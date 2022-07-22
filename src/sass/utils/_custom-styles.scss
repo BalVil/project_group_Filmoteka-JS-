@@ -1,0 +1,119 @@
+body {
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
+
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+body.dark-theme {
+  color: #ffffff;
+  // background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+  //   url(../images/background/background.jpg) fixed;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
+}
+
+// body:before {
+//   content: "";
+//   display: block;
+// position: fixed;
+// left: 0;
+// top: 0;
+//   width: 100%;
+//   height: 100%;
+// z-index: -10;
+//   background: url(photos/2452.jpg) no-repeat center center;
+// -webkit-background-size: cover;
+// -moz-background-size: cover;
+// -o-background-size: cover;
+// background-size: cover;
+// }
+
+body.dark-theme::before {
+  content: '';
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #ffffff;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url(../images/background/background.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  background-position: top;
+  @media (min-width: 768px) {
+    background-position: center;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+a {
+  color: var(--secondary-text-color);
+  text-decoration: none;
+  font-weight: inherit;
+  font-size: 12px;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  font-size: 12px;
+  // color: var(--main-text-color);
+}
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  // color: var(--main-text-color);
+}
+img {
+  display: block;
+  height: auto;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 5px;
+}
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+.hidscroll::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+  /* chrome based */
+  width: 0px; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
+}

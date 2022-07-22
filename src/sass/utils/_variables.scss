@@ -1,0 +1,28 @@
+:root {
+  --main-text-color: #000000;
+  --secondary-text-color: #ffffff;
+  --complementary-text-color: #ff6b01;
+  --footer-tex-color: #545454;
+  --modal-form-secondary-text-color: #8c8c8c;
+  --modal-form-dark-text-color: #e6e6e6;
+  --main-background-color: #ffffff;
+  --footer-background-color: #f7f7f7;
+  --youtube-color: #f00;
+  --light-linear-gradient: linear-gradient(
+    rgba(0, 0, 0, 0.56),
+    rgba(0, 0, 0, 0.56)
+  );
+  --dark-linear-gradient: linear-gradient(
+    #0007,
+    #0008 50%,
+    #000b 90%,
+    #000f 100%
+  );
+  --dark-linear-gradient-main: linear-gradient(
+    #0008,
+    #0008 75%,
+    #00000095 90%,
+    #000b 95%,
+    #000f 100%
+  );
+}
