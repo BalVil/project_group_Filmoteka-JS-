@@ -2,36 +2,27 @@ import * as basicLightbox from 'basiclightbox';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { notiflixLoading, notiflixLoadingRemove } from './loading';
 
 import FilmApiService from './filmApiService';
+import renderOnRemove from './Library/renderOnRemove';
+
 import { textModalBtn, addBtnListener } from './modalBtn';
-import {
-  onClickWatched,
-  onClickQueue,
-  libraryFilmCardRender,
-} from './btnWatchedQueue';
-import { initPagination, paginationProperties } from './pagePagination';
+import { onClickWatched, onClickQueue } from './btnWatchedQueue';
 
 import posterNotFound from '../images/desktop/poster-not-found-desktop.jpg';
 import posterNotFound2x from '../images/desktop/poster-not-found-desktop@2x.jpg';
-import { saveStorage } from './localStorage';
-
-import buttonColorChange from './changeButtonColor';
 
 const DEBOUNCE_DELAY = 250;
 const filmApiService = new FilmApiService();
 
-const movieItemRef = document.querySelector('.films-list');
-movieItemRef.addEventListener('click', onMovieItemClick);
+document
+  .querySelector('.films-list')
+  .addEventListener('click', onMovieItemClick);
 
-const headerLibrary = document.querySelector('.header-library');
 const watchedButton = document.querySelector('.watched-button');
 const queueButton = document.querySelector('.queue-button');
-const filmList = document.querySelector('.films-list');
 
 let postersArr = [];
-
 let getLocalStorageWatched = [];
 let getLocalStorageQueue = [];
 
@@ -85,7 +76,6 @@ async function createMovieItemClick({
   id,
   imdb_id,
 }) {
-  // console.log(poster_path);
   let src = `https://image.tmdb.org/t/p/w500${poster_path}`;
   let src2x = `https://image.tmdb.org/t/p/w780${poster_path}`;
   let src3x = `https://image.tmdb.org/t/p/w780${poster_path}`;
@@ -235,7 +225,6 @@ async function createMovieItemClick({
   window.addEventListener('keydown', onCloseModalEscape);
 
   //Watch the trailer button
-
   const { data } = await filmApiService.fetchMovieTrailer();
   if (data.results.length) {
     const posterTrailerBtn = document.querySelector('.poster__trailer-btn');
@@ -335,68 +324,5 @@ async function onShowTrailer() {
 function onCloseTrailerEsc(evt) {
   if (evt.code === 'Escape') {
     trailerIframe.close();
-  }
-}
-
-async function rerenderLibraryAfterDelete(libraryArraySlice, page) {
-  notiflixLoading();
-  const libraryArrayRender = [];
-
-  if (libraryArraySlice[page - 1] === undefined) {
-    page -= 1;
-  }
-
-  for (let id of libraryArraySlice[page - 1]) {
-    filmApiService.ID = id;
-    const resolve = await filmApiService.fetchMovieID();
-    const filmArray = resolve.data;
-    libraryArrayRender.push(filmArray);
-  }
-  paginationProperties.page = page;
-  paginationProperties.totalPages = libraryArraySlice.length;
-  paginationProperties.libraryArr = libraryArraySlice;
-
-  filmList.innerHTML = libraryFilmCardRender(libraryArrayRender);
-  initPagination(paginationProperties);
-  notiflixLoadingRemove();
-  buttonColorChange.CallButtonColorChange();
-}
-
-function renderOnRemove(item, currentBtn, fn, localStoragePlace) {
-  if (
-    !headerLibrary.classList.contains('is-hidden') &&
-    currentBtn.classList.contains('currentbtn')
-  ) {
-    let page = paginationProperties.page;
-    const getLocalStorgeObj = JSON.parse(localStorage.getItem(item));
-
-    if (getLocalStorgeObj.length === localStoragePlace.length) {
-      if (
-        JSON.stringify(localStoragePlace) == JSON.stringify(getLocalStorgeObj)
-      ) {
-        return;
-      } else {
-        saveStorage(item, localStoragePlace);
-        return;
-      }
-    }
-
-    const libraryArraySlice = [];
-    for (let i = 0; i < getLocalStorgeObj.length; i += 9) {
-      const chunk = getLocalStorgeObj.slice(i, i + 9);
-      libraryArraySlice.push(chunk);
-    }
-
-    if (
-      libraryArraySlice.toString() ===
-      paginationProperties.libraryArr.toString()
-    ) {
-      return;
-    } else if (getLocalStorgeObj.length <= 9) {
-      fn();
-    } else {
-      rerenderLibraryAfterDelete(libraryArraySlice, page);
-    }
-    buttonColorChange.CallButtonColorChange();
   }
 }
