@@ -1,9 +1,46 @@
-**Read in other languages: [Русский](README.md), [Polski](README.pl.md).**
+Greetings 👋
+
+After finishing the JavaScript course at GOIT academy, to consolidate the
+knowledge we gained, our team implemented 📃 a graduation project - a web
+application "Filmoteka".
+
+🎨 The layout of the application was posted on Figma - three versions: mobile,
+tablet and working version.
+
+🛠️ We were also given terms of reference describing the functionality of the
+future site.
+
+Trello was used to track task completion.
+
+My tasks on the project:
+
+# To create a single movie modal template (mobile, tablet, desktop)
+
+# Clicking on a movie card on any page should open a modal with dynamically substituted movie information.
+
+# Implement closing the modal by pressing the ESC key and by clicking outside the modal, do not forget to remove the listeners.
+
+# Optionally implemented: Showing a video trailer and movie posters in the modal
+
+The overall goal was to make a site that conforms to the layout, as well as
+performs all tasks according to the terms of reference. The main purpose of the
+site is to show popular movies of the week, search for a particular movie, and
+provide detailed information about the film, as well as organizing a user's
+library for managing film lists.
+
+✅ Skills gained during the project :
+
+- experience with Git teamwork;
+- experience in working with the Parcel builder;
+- use of the Scrum team work methodology;
+- consolidation of knowledge of HTML, CSS, and JavaScript.
+
+**Read in other languages: [Українська](README.md)**
 
 # Parcel template
 
-Этот проект был создан при помощи Parcel. Для знакомства и настройки
-дополнительных возможностей [обратись к документации](https://parceljs.org/).
+This project was created using Parcel. For familiarity and customization
+additional features [refer to the documentation](https://parceljs.org/).
 
 ## Подготовка нового проекта
 
